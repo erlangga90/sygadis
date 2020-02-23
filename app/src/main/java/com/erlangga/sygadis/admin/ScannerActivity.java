@@ -41,6 +41,9 @@ public class ScannerActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 new LocalManager(ScannerActivity.this).removePreference(LoginActivity.SAVED_ADMIN);
+                startActivity(new Intent(
+                    ScannerActivity.this, LoginActivity.class
+                ));
             }
         });
     }

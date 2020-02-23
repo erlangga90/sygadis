@@ -63,6 +63,7 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(
                                     LoginActivity.this, ScannerActivity.class
                                 ));
+                                finish();
                             } else {
                                 // ketika tidak terdaftar / error dari database 404
                                 Toast
