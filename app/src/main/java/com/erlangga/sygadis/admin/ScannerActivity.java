@@ -7,6 +7,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.TaskStackBuilder;
+
 import com.erlangga.sygadis.R;
 import com.erlangga.sygadis.local.LocalManager;
 import com.erlangga.sygadis.login.LoginActivity;
@@ -41,9 +43,12 @@ public class ScannerActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 new LocalManager(ScannerActivity.this).removePreference(LoginActivity.SAVED_ADMIN);
-                startActivity(new Intent(
-                    ScannerActivity.this, LoginActivity.class
-                ));
+                Intent intent = new Intent(
+                        ScannerActivity.this, LoginActivity.class
+                );
+                TaskStackBuilder taskStackBuilder = TaskStackBuilder.create(ScannerActivity.this);
+                taskStackBuilder.addNextIntent(intent);
+                taskStackBuilder.startActivities();
             }
         });
     }
