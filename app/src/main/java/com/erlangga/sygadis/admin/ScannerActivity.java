@@ -2,6 +2,7 @@ package com.erlangga.sygadis.admin;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -107,6 +108,7 @@ public class ScannerActivity extends AppCompatActivity {
                                             .show();
                                     }
                                 } catch (Exception e) {
+                                    Log.e(ScannerActivity.class.getSimpleName(), e.getMessage(), e);
                                     Toast
                                         .makeText(ScannerActivity.this,
                                             "Gagal melakukan presensi", Toast.LENGTH_LONG)
@@ -118,16 +120,19 @@ public class ScannerActivity extends AppCompatActivity {
                         @Override
                         public void onFailure(Call<PresensiResponse> call, Throwable t) {
                             if (t.getMessage().contains("406")) {
+                                Log.e(ScannerActivity.class.getSimpleName(), t.getMessage(), t);
                                 Toast
                                     .makeText(ScannerActivity.this,
                                         "Checkout gagal, belum kerja 8 jam!", Toast.LENGTH_LONG)
                                     .show();
                             } else if (t.getMessage().contains("409")) {
+                                Log.e(ScannerActivity.class.getSimpleName(), t.getMessage(), t);
                                 Toast
                                     .makeText(ScannerActivity.this,
                                         "Sudah checkout, silakan pulang!", Toast.LENGTH_LONG)
                                     .show();
                             } else {
+                                Log.e(ScannerActivity.class.getSimpleName(), t.getMessage(), t);
                                 Toast
                                     .makeText(ScannerActivity.this,
                                         "Gagal melakukan presensi", Toast.LENGTH_LONG)
